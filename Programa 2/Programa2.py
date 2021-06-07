@@ -104,7 +104,7 @@ def removeComments(codigo: str):
 
 def imprimeTabela(linha: str):
     identificador = 0
-    print("\nLexemas encontrados | Token (Tipo de token)\n")
+    print("\nLexemas encontrados | Token (Tipo de token)")
     for char in linha.split():
         if char != ' ':
             if char in simbolos:
@@ -124,6 +124,7 @@ def imprimeTabela(linha: str):
                     'name': "Identificador {}".format(identificador),
                     'found': True
                 }
+    print("\n")
 
 
 def main():
@@ -143,16 +144,15 @@ def main():
         }
   '''
     codigo_c_2 = '''
-        // Minha funcao main
+    // Minha funcao main
     int main() {
     float x = 10.327 ;
     double y = 4244.546 ;
     /*Meu outro comentario*/
     int z = 28 ;
+    float soma = x + y + z ;
    // Imprimindo valores
-    printf ( " The float value : " , x ) ;
-    printf ( " The double value : " , y ) ;
-    printf ( " The sum of float : " , x + y ) ;
+    printf ( soma ) ;
 
     return 0 ;
 }

@@ -1,47 +1,46 @@
 import sys
 sys.tracebacklimit=0
-class Node():
+class No():
     def __init__(self, valor, prox = None):
         self.valor = valor
         self.prox = prox
 
     def __str__(self):
         return str(self.valor)
-def operacao(op, opnd1, opnd2):
+def operacao(op, operando1, operando2):
     if op == "+":
-        return opnd1 + opnd2
+        return operando1 + operando2
     elif op == "-":
-        return opnd1 - opnd2
+        return operando1 - operando2
     elif op == "*":
-        return opnd1 * opnd2
+        return operando1 * operando2
     elif op == "/":
-        return opnd1 / opnd2
+        return operando1 / operando2
     elif op == "$":
-        return opnd1 ** opnd2
+        return operando1 ** operando2
     else:
-        return False                # Retorna False caso o operando não seja válido
+        return False
 
-def avaliarPosfixa(expressao):
-    """ Avalia uma expressao posfixa"""
+def posfixa(expressao):
     p = Pilha()
     for i in range(len(expressao)):
         c = expressao[i]
         if c >= "0" and c <= "9":
             p.push(c)
         else:
-            opnd2 = p.pop()
-            opnd1 = p.pop()
+            operando2 = p.pop()
+            operando1 = p.pop()
 
-            valor = operacao(c, int(opnd1), int(opnd2))
+            valor = operacao(c, int(operando1), int(operando2))
 
-            if valor:                                       # Verifica se o operando é válido   
+            if valor:                                      
                 p.push(valor)
             else:
                 return "Operador invalido"
     
     resultado = p.pop()
 
-    if p.isEmpty():                 # Verifica se ao final a pilha está vazia
+    if p.isEmpty():              
         return resultado
     else:
         return "Expressao invalida"
@@ -114,11 +113,11 @@ class Pilha():
 
     def __str__(self):
         strPilha = ""
-        node = self.topo
+        no = self.topo
         while True:
-            strPilha += str(node.valor) + "\n"
-            node = node.prox
-            if node == None:
+            strPilha += str(no.valor) + "\n"
+            no = no.prox
+            if no == None:
                 break
         return strPilha
 
@@ -130,10 +129,10 @@ class Pilha():
 
     def push(self, v):
         if self.isEmpty():
-            self.topo = Node(v)
+            self.topo =No(v)
             self.cont += 1
         else:
-            novo = Node(v, self.topo)
+            novo = No(v, self.topo)
             self.topo = novo
             self.cont += 1
 
@@ -157,7 +156,7 @@ try:
 
   print("\nExpressao infixa: {0} \nExpressao posfixa: {1}".format(infixa, posfixa))
 
-  resultado = avaliarPosfixa(posfixa)
+  resultado = posfixa(posfixa)
 
   print("Resultado: {0}\n".format(resultado))
 
